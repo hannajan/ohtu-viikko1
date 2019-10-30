@@ -29,7 +29,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ohtu.ohtuvarasto.Main'
+        attributes 'Main-Class': 'main.ohtu.ohtuvarasto.Main'
     }
 }
 
