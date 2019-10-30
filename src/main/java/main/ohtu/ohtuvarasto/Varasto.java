@@ -1,4 +1,4 @@
-package ohtu.ohtuvarasto;
+package main.ohtu.ohtuvarasto;
 
 public class Varasto {
 

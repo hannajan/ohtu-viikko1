@@ -1,4 +1,4 @@
-package ohtu.ohtuvarasto;
+package main.ohtu.ohtuvarasto;
 
 import org.junit.*;
 import static org.junit.Assert.*;

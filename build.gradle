@@ -29,7 +29,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'ohtu.ohtuvarasto.Main'
+        attributes 'Main-Class': 'main.ohtu.ohtuvarasto.Main'
     }
 }
 
@@ -43,11 +43,11 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: it,
-                exclude: ['main/ohtu/ohtuvarasto/main/**'])
+                exclude: ['main/ohtu/ohtuvarasto/Main**'])
         })
     }
 }
 
 // Define the main class for the application
-mainClassName = 'ohtu.ohtuvarasto.Main'
+mainClassName = 'main.ohtu.ohtuvarasto.Main'
 
