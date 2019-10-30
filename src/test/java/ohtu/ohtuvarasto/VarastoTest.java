@@ -142,7 +142,7 @@ public class VarastoTest {
         Varasto var = new Varasto(10, 5);
         var.otaVarastosta(8);
         
-        assertEquals(0, var.getSaldo(), vertailuTarkkuus);
+        assertEquals(-3, var.getSaldo(), vertailuTarkkuus);
     }
     
     @Test
