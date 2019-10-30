@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
     double vertailuTarkkuus = 0.0001;
 
     @Before
@@ -64,5 +65,90 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
+    
+    @Test
+    public void konstruktoriLuoVarastonAnnetullaAlkusaldolla() {
+        Varasto var = new Varasto(10, 8);
+        
+        assertEquals(8, var.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriEiLuoNegatiivisellaAlkusaldollaVarastoa() {
+        Varasto var = new Varasto(10, -4);
+        
+        assertEquals(0, var.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriEiLuoSaldoaJokaYliTilavuuden() {
+        Varasto var = new Varasto(10, 20);
+        
+        assertEquals(10, var.getSaldo(), vertailuTarkkuus);
+    }
 
+    @Test
+    public void konstruktoriEiLuoVarastoaNegatiivisellaTilavuudella() {
+        Varasto var = new Varasto(-1);
+        
+        assertEquals(0, var.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void toinenKonstruktoriEiLuoVarastoaNegatiivisellaTilavuudella() {
+        Varasto var = new Varasto(-1, 5);
+        
+        assertEquals(0, var.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaVarastoonEiHyvaksyNegatiivistaMaaraa() {
+        varasto.lisaaVarastoon(-1);
+        
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaVarastoonEiLisaaYliTilavuuden() {
+        varasto.lisaaVarastoon(20);
+        
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otaVarastostaEiHyvaksyNegatiivistaMaaraa() {
+        Varasto var = new Varasto(10, 5);
+        
+        assertEquals(0.0, var.otaVarastosta(-5), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void negatiivinenOttaminenEiMuutaSaldoa() {
+        Varasto var = new Varasto(10, 5);
+        var.otaVarastosta(-5);
+        
+        assertEquals(5, var.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void ottaminenEiAnnaEnempaaKuinSaldo() {
+        Varasto var = new Varasto(10, 5);
+        
+        assertEquals(5, var.otaVarastosta(8), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void saldoOnNollaKunOtetaanNiinPaljonKuinVoi() {
+        Varasto var = new Varasto(10, 5);
+        var.otaVarastosta(8);
+        
+        assertEquals(0, var.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void tulosteOikein() {
+        Varasto var = new Varasto(10, 5);
+        
+        assertEquals("saldo = 5.0, vielä tilaa 5.0", var.toString());
+    }
 }
