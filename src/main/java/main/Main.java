@@ -9,7 +9,7 @@ public class Main {
             System.out.println("kolme sisäkkäistä iffiä");
         }
         for(int i = 0; i < 1; i++) {
-                System.out.println("kaksi sisäkkäistä foria");
+            System.out.println("kaksi sisäkkäistä foria");
         }
     }
 
